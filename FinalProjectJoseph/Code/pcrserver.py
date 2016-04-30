@@ -19,43 +19,43 @@ HOMEDIR = '/home/ubuntu/pythonproject/'
 
 @get('/static/<filename:path>')
 def static(filename):
-    return static_file(filename, root='/home/ubuntu/pythonproject/static/')
+    return static_file(filename, root=HOMEDIR + 'static/')
     ##This is a filepath to static addresses on the site. You will need to use an appropriate
     ##address (or a system link for security purposes) when using on a different host
 
 @get('/badges/<filename:path>')
 def badge(filename):
-    return static_file(filename, root='/home/ubuntu/pythonproject/badges/')
+    return static_file(filename, root=HOMEDIR + 'badges/')
     ##This is a filepath to static addresses on the site. You will need to use an appropriate
     ##address (or a system link for security purposes) when using on a different host
 
 @get('/issuers/<filename:path>')
 def issuer(filename):
-    return static_file(filename, root='/home/ubuntu/pythonproject/issuers/')
+    return static_file(filename, root=HOMEDIR + 'issuers/')
     ##This is a filepath to static addresses on the site. You will need to use an appropriate
     ##address (or a system link for security purposes) when using on a different host
 
 @get('/users/<filename:path>')
 def issuer(filename):
-    return static_file(filename, root='/home/ubuntu/pythonproject/users/')
+    return static_file(filename, root=HOMEDIR + 'users/')
     ##This is a filepath to static addresses on the site. You will need to use an appropriate
     ##address (or a system link for security purposes) when using on a different host
 
 @get('/images/<filename:path>')
 def image(filename):
-    return static_file(filename, root='/home/ubuntu/pythonproject/images/')
+    return static_file(filename, root=HOMEDIR + 'images/')
     ##This is a filepath to static addresses on the site. You will need to use an appropriate
     ##address (or a system link for security purposes) when using on a different host
 
 @get('/criteria/<filename:path>')
 def criteria(filename):
-    return static_file(filename, root='/home/ubuntu/pythonproject/criteria/')
+    return static_file(filename, root=HOMEDIR + 'criteria/')
     ##This is a filepath to static addresses on the site. You will need to use an appropriate
     ##address (or a system link for security purposes) when using on a different host
 
 @get('/awardedbadges/<filename:path>')
 def awardedbadge(filename):
-    return static_file(filename, root='/home/ubuntu/pythonproject/awardedbadges/')
+    return static_file(filename, root=HOMEDIR + 'awardedbadges/')
     ##This is a filepath to static addresses on the site. You will need to use an appropriate
     ##address (or a system link for security purposes) when using on a different host
 
@@ -375,7 +375,7 @@ def upload_image():
         if ext not in ('.png'):
             return "File extension not allowed."
 
-        save_path = "/home/ubuntu/pythonproject/images"
+        save_path = HOMEDIR + "images"
 
         file_path = "{path}/{file}".format(path=save_path, file=upload.filename)
         upload.save(file_path)

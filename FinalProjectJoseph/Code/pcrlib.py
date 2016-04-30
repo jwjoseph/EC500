@@ -15,6 +15,7 @@ import time
 import datetime
 
 HOSTIP = 'http://www.pcrhero.org:8000/'
+HOMEDIR = '/home/ubuntu/pythonproject/'
 
 class PCRUser:
     '''This is a convenience class which verifies that entries to the users collection are valid'''
@@ -42,7 +43,7 @@ class PCRIssuer:
         data = json.dumps(self.output())
         return data
 
-    def establish_here(self, hostdir="/home/ubuntu/pythonproject/issuers/"):
+    def establish_here(self, hostdir= HOMEDIR + "issuers/"):
         """Uploads a JSON version of the issuer to the host server.
         Needed to award the badge."""
         badgeJSON = self.jsonize() 
@@ -76,7 +77,7 @@ class OpenBadge:
         data = {"name": self.name, "description": self.description, "image": self.image,  "criteria": self.criteria, "tags": self.tags, "issuer": self.issuer}
         return data
 
-    def establish_here(self, hostdir="/home/ubuntu/pythonproject/badges/"):
+    def establish_here(self, hostdir= HOMEDIR + "badges/"):
         """Uploads a JSON version of the base badge class to the host server.
         Needed to award the badge. Creates a .json file and adds it to the database"""
         badgeJSON = self.jsonize() 
@@ -184,18 +185,18 @@ class PerformanceTask(Task):
 
 
 
-def award_badge_to_user(db, badgename, username, hostdir="/home/ubuntu/pythonproject/awardedbadges/"):
+def award_badge_to_user(db, badgename, username, hostdir=HOMEDIR + "awardedbadges/"):
     """awards a badge to a recipient, creating a publicly hosted json of the badge info (a badge assertion)
-    located at "http://www.pcrhero.org:8000/awardedbadges/"
+    located at "http://HOMEIP/awardedbadges/"
     the recipient will be a json with the user's email (hashed), type (email), hashed (boolean), and salt"""
     ### Part one - create the badge assertion
     email = username
     username = sanitize(username)
-    badgesource = open("/home/ubuntu/pythonproject/badges/" + badgename + ".json", "r")
+    badgesource = open(HOMEDIR + "badges/" + badgename + ".json", "r")
     badgedict = json.load(badgesource)
     uid = username + badgename ## this is a unique internal identifier for the mozilla standard
-    verifyAddress = "http://www.pcrhero.org/awardedbadges/" + uid + ".json"
-    badgeAddress = "http://www.pcrhero.org/badges/" + badgename + ".json"
+    verifyAddress = HOSTIP + "awardedbadges/" + uid + ".json"
+    badgeAddress = HOSTIP + "badges/" + badgename + ".json"
     issuedOn = str(time.time()).split('.')[0]
     verify = {"type": "hosted", "url": verifyAddress}
     recipient = create_recipient(email)
@@ -225,7 +226,7 @@ def bake(badge, username, filename, hostname="http://www.pcrhero.org/badges/"):
     email = username
     username = sanitize(username)
     uid = username + badgename
-    hostedURL = "http://www.pcrhero.org/awardedbadges/" + uid + ".json"
+    hostedURL = HOSTIP + "awardedbadges/" + uid + ".json"
     print("Badge hosted at " + hostedURL)
     getURL = "http://backpack.openbadges.org/baker?assertion=" + hostedURL
     print("Baking badge at " + getURL)
@@ -299,7 +300,7 @@ def find_badge(db, badgename):
 def establish_criteria(badgename, criteria):
     """establishses a criteria file at /criteria/badgename.html to satisfy OpenBadges Requirements
     returns a link for use in the badge"""
-    criteria_file = open("/home/ubuntu/pythonproject/criteria/" + badgename + ".html", 'w')
+    criteria_file = open(HOMEDIR + "criteria/" + badgename + ".html", 'w')
     criteria_file.write(criteria)
     criteria_file.close()
     return HOSTIP + "criteria/" + badgename + ".html"
