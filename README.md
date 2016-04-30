@@ -40,3 +40,10 @@ There is absolutely nothing special about this file structure; apart from a few 
 ###MongoDB setup
 You will need to set up a database (pcrhero) and collections (apps, badges, issuers, tasks, users).
 
+###Python server and library file setup
+You will need to replace the value of HOSTIP in both the server and library file (it's at the top).
+You will also need to replace the IP address at the very bottom of the file
+```
+run(host='172.31.57.1', port=8000, debug=True)
+```
+With your host, any port number that you wish to use, and remember to set ```debug=False``` when you are deploying your server to the public as this will leak important information about the server code and file dependencies!
