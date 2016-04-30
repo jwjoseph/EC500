@@ -47,3 +47,7 @@ You will also need to replace the IP address at the very bottom of the file
 run(host='172.31.57.1', port=8000, debug=True)
 ```
 With your host, any port number that you wish to use, and remember to set ```debug=False``` when you are deploying your server to the public as this will leak important information about the server code and file dependencies!
+
+Finally, you will need to add your email to the admins database before you can award badges.
+
+To run, simply ```python3 pcrserver.py```
