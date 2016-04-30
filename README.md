@@ -35,6 +35,8 @@ The filesystem was arranged as follows:
 
 /home/ubuntu/pythonproject/users/
 
+There is absolutely nothing special about this file structure; apart from a few references that I have likely neglected to link to CONSTANT variables at the begining, you may substitute another base directory ad libitum. 
+
 ###MongoDB setup
 You will need to set up a database (pcrhero) and collections (apps, badges, issuers, tasks, users).
-There is absolutely nothing special about this file structure; apart from a few references that I have likely neglected to link to CONSTANT variables at the begining. 
+
