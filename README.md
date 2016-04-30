@@ -17,7 +17,7 @@ The environment I ran this on was an Amazon Web Services (AWS) Ubuntu server (of
 
 ## Filesystem setup
 The filesystem was arranged as follows:
-/home/ubuntu/pythonproject/   <-- base directory, contains the server file (hello4.py), libraries file (m3.py), and tpls
+/home/ubuntu/pythonproject/   <-- base directory, contains the server file, libraries file, and .tpls
 
 /home/ubuntu/pythonproject/apps/
 
